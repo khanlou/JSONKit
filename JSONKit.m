@@ -816,6 +816,14 @@ static void _JKArrayRemoveObjectAtIndex(JKArray *array, NSUInteger objectIndex) 
   return([(NSMutableArray *)[NSMutableArray allocWithZone:zone] initWithObjects:objects count:count]);
 }
 
+- (void) setObject:(id)obj atIndexedSubscript:(NSUInteger)idx {
+	[self insertObject:obj atIndex:idx];
+}
+
+- (id) objectAtIndexedSubscript:(NSUInteger)idx {
+	return [self objectAtIndex:idx];
+}
+
 @end
 
 
@@ -1103,6 +1111,15 @@ static JKHashTableEntry *_JKDictionaryHashTableEntryForKey(JKDictionary *diction
   NSParameterAssert((entry != NULL) && (count <= capacity));
   return([[NSMutableDictionary allocWithZone:zone] initWithDictionary:self]);
 }
+
+- (void) setObject:(id)obj forKeyedSubscript:(id<NSCopying>)key {
+	[self setObject:obj forKey:key];
+}
+
+- (id) objectForKeyedSubscript:(id)key {
+	return [self objectForKey:key];
+}
+
 
 @end
 
